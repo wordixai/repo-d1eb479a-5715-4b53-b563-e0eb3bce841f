@@ -2,17 +2,122 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-The @apply directive should not be used with the group utility class.
-*/
-
 @layer base {
   :root {
-   
+    /* Light theme colors */
+    --background: 249 247 241; /* #F9F7F1 */
+    --foreground: 22 21 21; /* #161615 */
+    --muted: 89 88 86; /* #595856 */
+    --muted-foreground: 89 88 86;
+    --popover: 249 247 241;
+    --popover-foreground: 22 21 21;
+    --card: 241 239 233; /* #F1EFE9 */
+    --card-foreground: 22 21 21;
+    --border: 233 231 226; /* #E9E7E2 */
+    --input: 233 231 226;
+    --primary: 255 88 106; /* #FF586A */
+    --primary-foreground: 255 255 255;
+    --secondary: 241 239 233;
+    --secondary-foreground: 22 21 21;
+    --accent: 241 239 233;
+    --accent-foreground: 22 21 21;
+    --destructive: 239 68 68;
+    --destructive-foreground: 248 250 252;
+    --ring: 255 88 106;
+    --radius: 0.75rem;
+    
+    /* Custom Macaron colors */
+    --macaron-pink: 255 88 106; /* #FF586A */
+    --macaron-orange: 255 88 22; /* #FF5816 */
+    --macaron-yellow: 234 222 57; /* #EADE39 */
+    --macaron-green: 140 167 43; /* #8CA72B */
+    --macaron-light-pink: 255 152 162; /* #FF98A2 */
+    --macaron-cream: 255 230 209; /* #FFE6D1 */
   }
 
-  .dark {
-
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
+
+  .macaron-gradient {
+    background: linear-gradient(135deg, #FF586A, #FF8C42);
+  }
+
+  .noise-background {
+    position: relative;
+  }
+
+  .noise-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+    filter: url(#noiseFilter);
+    pointer-events: none;
+  }
+
+  .macaron-hero-bg {
+    background: radial-gradient(circle at -10% 0%, hsl(var(--macaron-cream)), hsl(var(--background)));
+    background-size: 120% 100%;
+    background-position: -10% 0%;
+  }
+
+  .rotating-macaron {
+    animation: rotate 20s linear infinite;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .floating-decoration {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(5deg);
+    }
+  }
+
+  .rolling-animation {
+    animation: roll 30s linear infinite;
+  }
+
+  @keyframes roll {
+    from {
+      transform: translateX(0px);
+    }
+    to {
+      transform: translateX(-100px);
+    }
+  }
+}
+
+/* Custom utilities */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
